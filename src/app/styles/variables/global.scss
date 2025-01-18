@@ -1,0 +1,25 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap';
+
+:root {
+	--font-family-main: 'Helvetica Neue', helvetica, 'Roboto', 'Lucida Grande',
+		arial, sans-serif;
+	--font-size-s: 12px;
+	--font-size-m: 16px;
+	--font-size-l: 24px;
+	--font-line-s: 20px;
+	--font-line-m: 24px;
+	--font-line-l: 42px;
+	--font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+	--font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+	--font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+	// Sizes
+	--header-height: 60px;
+	--navbar-width: 200px;
+
+	//  Borders
+	--border-S: 8px;
+	--border-M: 16px;
+	--border-L: 24px;
+	--border-XL: 32px;
+}
