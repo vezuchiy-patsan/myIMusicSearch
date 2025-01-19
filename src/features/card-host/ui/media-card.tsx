@@ -5,7 +5,7 @@ import { AppCard } from '@/shared/ui/card';
 
 export function MediaCard() {
 	return (
-		<AppCard isLoading={false}>
+		<AppCard>
 			<Group justify="center">
 				<Text fw={900} size="xl">
 					Текст

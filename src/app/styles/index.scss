@@ -4,20 +4,14 @@
 .app {
 	font: var(--font-m);
 	min-height: 100vh;
-	min-width: 100vw;
 	.app-shell-root {
 		min-width: 100%;
 	}
 	.app-shell-main {
 		min-width: 100%;
-		padding-top: var(--app-shell-header-offset);
-		padding-left: var(--app-shell-navbar-offset);
+		padding-top: var(--app-shell-header-offset) / 2;
+		padding-inline: 50px;
 	}
-}
-
-.page-content {
-	display: flex;
-	width: 100%;
 }
 
 .page-wrapper {

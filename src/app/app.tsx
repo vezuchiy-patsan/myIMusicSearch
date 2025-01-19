@@ -16,22 +16,20 @@ export function App() {
 		<div className={cn('app')}>
 			<Suspense fallback="">
 				<AppErrorBoundary>
-					<div className="page-content">
-						<AppShell
-							header={{ height: 'var(--header-height)' }}
-							padding="md"
-							classNames={{
-								root: 'app-shell-root',
-								main: 'app-shell-main',
-							}}
-						>
-							<AppHeader />
+					<AppShell
+						header={{ height: 'var(--header-height)' }}
+						padding="md"
+						classNames={{
+							root: 'app-shell-root',
+							main: 'app-shell-main',
+						}}
+					>
+						<AppHeader />
 
-							<AppShell.Main>
-								<AppRouter />
-							</AppShell.Main>
-						</AppShell>
-					</div>
+						<AppShell.Main>
+							<AppRouter />
+						</AppShell.Main>
+					</AppShell>
 				</AppErrorBoundary>
 			</Suspense>
 		</div>

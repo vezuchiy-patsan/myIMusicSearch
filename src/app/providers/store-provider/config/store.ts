@@ -7,11 +7,13 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 
 import { AppDispatch, IStateSchema } from './state-schema';
 import { api } from '@/app/api/api-query';
+import { searchReducer } from '@/widgets/app-header/entities/slice/search-slice';
 
 // создание store
 export function createReduxStore(initialState?: IStateSchema) {
 	// цепляем через интерфейс
 	const reducers: ReducersMapObject<IStateSchema> = {
+		searchArg: searchReducer,
 		[api.reducerPath]: api.reducer,
 	};
 

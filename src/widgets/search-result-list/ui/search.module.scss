@@ -4,3 +4,17 @@
 .gridInner {
 	height: inherit;
 }
+.imgStyle {
+	border-radius: var(--mantine-radius-md);
+}
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.imageWrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}

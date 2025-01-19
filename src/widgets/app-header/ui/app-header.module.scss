@@ -1,11 +1,23 @@
+$base-border: 1px solid
+	light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+
 .header {
 	height: 56px;
-	margin-bottom: 120px;
+	margin: 20px auto;
+	width: 80vw;
 	background-color: var(--mantine-color-body);
-	border-bottom: 1px solid
-		light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+	border: $base-border;
 	padding-left: var(--mantine-spacing-md);
 	padding-right: var(--mantine-spacing-md);
+	border-radius: var(--mantine-radius-xl);
+	box-shadow: var(--mantine-shadow-sm);
+}
+
+.group {
+	width: 100%;
+}
+.search {
+	width: 10%;
 }
 
 .inner {
@@ -13,6 +25,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%;
 }
 
 .link {
