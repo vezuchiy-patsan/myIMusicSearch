@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+// eslint-disable-next-line import/named
 import { Select, SelectProps } from '@mantine/core';
 
 import styles from './select.module.scss';

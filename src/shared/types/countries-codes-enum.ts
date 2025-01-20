@@ -1,3 +1,4 @@
+// ISO 3166-1_alpha-2
 export enum CountriesCodesEnum {
 	AF = 'AF',
 	AL = 'AL',

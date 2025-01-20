@@ -32,7 +32,7 @@ import { useSearchMediaQuery } from '@/app/api/api-query';
 import { useAppSelector } from '@/app/providers/store-provider';
 import { AppCard } from '@/shared/ui/card';
 
-export type kindContent =
+type kindContent =
 	| 'book'
 	| 'album'
 	| 'coached-audio'
@@ -48,7 +48,7 @@ export type kindContent =
 	| 'artist'
 	| 'unknown-type';
 
-export const GetSvgTypeContent = (type: kindContent): JSX.Element => {
+const getSvgTypeContent = (type: kindContent): JSX.Element => {
 	switch (type) {
 		case 'book':
 			return <IconBook />;
@@ -81,7 +81,7 @@ export const GetSvgTypeContent = (type: kindContent): JSX.Element => {
 	}
 };
 
-const ImageWithLoader = ({ src, alt }: { src: string; alt: string }) => {
+const ImageWithLoader = memo(({ src, alt }: { src: string; alt: string }) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	return (
@@ -104,7 +104,7 @@ const ImageWithLoader = ({ src, alt }: { src: string; alt: string }) => {
 			</AspectRatio>
 		</div>
 	);
-};
+});
 
 export const SearchResultList = memo(() => {
 	const { isFetching, ...searchArg } = useAppSelector(
@@ -151,7 +151,7 @@ export const SearchResultList = memo(() => {
 									<GridCol>
 										<Text size="xl" fw={700}>
 											{card.trackName || card.artistName}
-											{GetSvgTypeContent(card.kind)}
+											{getSvgTypeContent(card.kind)}
 										</Text>
 									</GridCol>
 									<GridCol pt={0}>

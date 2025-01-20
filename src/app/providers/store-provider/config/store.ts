@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import {
 	combineReducers,
 	configureStore,
@@ -21,7 +22,7 @@ export function createReduxStore(initialState?: IStateSchema) {
 
 	const store = configureStore({
 		reducer: rootReducer,
-		devTools: true,
+		devTools: import.meta.env.MODE === 'development',
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(api.middleware),

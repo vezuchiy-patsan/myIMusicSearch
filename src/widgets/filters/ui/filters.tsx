@@ -1,9 +1,16 @@
 import { memo, useState } from 'react';
 
+// eslint-disable-next-line import/named
 import { ComboboxItem, Container, Text } from '@mantine/core';
 import { useDidUpdate } from '@mantine/hooks';
 
 import styles from './filters.module.scss';
+import {
+	entityDescriptions,
+	MediaEntity,
+	mediaEntityMapping,
+	MediaType,
+} from '../types/filters-type';
 import { api } from '@/app/api/api-query';
 import { useAppDispatch, useAppSelector } from '@/app/providers/store-provider';
 import {
@@ -13,109 +20,9 @@ import {
 import { AppCard } from '@/shared/ui/card';
 import { AppSelect } from '@/shared/ui/select';
 
-export enum MediaType {
-	MOVIE = 'movie',
-	PODCAST = 'podcast',
-	MUSIC = 'music',
-	MUSIC_VIDEO = 'musicVideo',
-	AUDIOBOOK = 'audiobook',
-	SHORT_FILM = 'shortFilm',
-	TV_SHOW = 'tvShow',
-	SOFTWARE = 'software',
-	EBOOK = 'ebook',
-	ALL = '',
-}
-
-export enum MediaEntity {
-	MOVIE_ARTIST = 'movieArtist',
-	MOVIE = 'movie',
-	PODCAST_AUTHOR = 'podcastAuthor',
-	PODCAST = 'podcast',
-	MUSIC_ARTIST = 'musicArtist',
-	MUSIC_TRACK = 'musicTrack',
-	ALBUM = 'album',
-	MUSIC_VIDEO = 'musicVideo',
-	MIX = 'mix',
-	SONG = 'song',
-	AUDIOBOOK_AUTHOR = 'audiobookAuthor',
-	AUDIOBOOK = 'audiobook',
-	SHORT_FILM_ARTIST = 'shortFilmArtist',
-	SHORT_FILM = 'shortFilm',
-	TV_EPISODE = 'tvEpisode',
-	TV_SEASON = 'tvSeason',
-	SOFTWARE = 'software',
-	IPAD_SOFTWARE = 'iPadSoftware',
-	MAC_SOFTWARE = 'macSoftware',
-	EBOOK = 'ebook',
-	ALL_ARTIST = 'allArtist',
-	ALL_TRACK = 'allTrack',
-}
-
-const mediaEntityMapping: Record<MediaType, MediaEntity[]> = {
-	[MediaType.MOVIE]: [MediaEntity.MOVIE_ARTIST, MediaEntity.MOVIE],
-	[MediaType.PODCAST]: [MediaEntity.PODCAST_AUTHOR, MediaEntity.PODCAST],
-	[MediaType.MUSIC]: [
-		MediaEntity.MUSIC_ARTIST,
-		MediaEntity.MUSIC_TRACK,
-		MediaEntity.ALBUM,
-		MediaEntity.MUSIC_VIDEO,
-		MediaEntity.MIX,
-		MediaEntity.SONG,
-	],
-	[MediaType.MUSIC_VIDEO]: [MediaEntity.MUSIC_ARTIST, MediaEntity.MUSIC_VIDEO],
-	[MediaType.AUDIOBOOK]: [MediaEntity.AUDIOBOOK_AUTHOR, MediaEntity.AUDIOBOOK],
-	[MediaType.SHORT_FILM]: [
-		MediaEntity.SHORT_FILM_ARTIST,
-		MediaEntity.SHORT_FILM,
-	],
-	[MediaType.TV_SHOW]: [MediaEntity.TV_EPISODE, MediaEntity.TV_SEASON],
-	[MediaType.SOFTWARE]: [
-		MediaEntity.SOFTWARE,
-		MediaEntity.IPAD_SOFTWARE,
-		MediaEntity.MAC_SOFTWARE,
-	],
-	[MediaType.EBOOK]: [MediaEntity.EBOOK],
-	[MediaType.ALL]: [
-		MediaEntity.MOVIE,
-		MediaEntity.ALBUM,
-		MediaEntity.ALL_ARTIST,
-		MediaEntity.PODCAST,
-		MediaEntity.MUSIC_VIDEO,
-		MediaEntity.MIX,
-		MediaEntity.AUDIOBOOK,
-		MediaEntity.TV_SEASON,
-		MediaEntity.ALL_TRACK,
-	],
-};
-
-const entityDescriptions: Record<MediaEntity, string> = {
-	[MediaEntity.MOVIE_ARTIST]: 'Исполнитель фильмов',
-	[MediaEntity.MOVIE]: 'Фильм',
-	[MediaEntity.PODCAST_AUTHOR]: 'Автор подкастов',
-	[MediaEntity.PODCAST]: 'Подкаст',
-	[MediaEntity.MUSIC_ARTIST]: 'Музыкальный исполнитель',
-	[MediaEntity.MUSIC_TRACK]: 'Музыкальный трек',
-	[MediaEntity.ALBUM]: 'Альбом',
-	[MediaEntity.MUSIC_VIDEO]: 'Музыкальное видео',
-	[MediaEntity.MIX]: 'Микс',
-	[MediaEntity.SONG]: 'Песня',
-	[MediaEntity.AUDIOBOOK_AUTHOR]: 'Автор аудиокниг',
-	[MediaEntity.AUDIOBOOK]: 'Аудиокнига',
-	[MediaEntity.SHORT_FILM_ARTIST]: 'Шортсы',
-	[MediaEntity.SHORT_FILM]: 'Короткометражный фильм',
-	[MediaEntity.TV_EPISODE]: 'Эпизод сериала',
-	[MediaEntity.TV_SEASON]: 'Сериал',
-	[MediaEntity.SOFTWARE]: 'Программное обеспечение',
-	[MediaEntity.IPAD_SOFTWARE]: 'Программное обеспечение для iPad',
-	[MediaEntity.MAC_SOFTWARE]: 'Программное обеспечение для Mac',
-	[MediaEntity.EBOOK]: 'Электронная книга',
-	[MediaEntity.ALL_ARTIST]: 'Все исполнители',
-	[MediaEntity.ALL_TRACK]: 'Все треки',
-};
-
 function getAllowedEntitiesForMediaType(
 	mediaTypeString: string = '',
-): { value: string; label: string }[] {
+): ComboboxItem[] {
 	const mediaType = Object.values(MediaType).find(
 		(type) => type === mediaTypeString,
 	);
@@ -196,6 +103,7 @@ export const Filters = memo(() => {
 				/>
 				<AppSelect
 					key={`AppSelect-2-${mediaFilter?.value || ''}`}
+					searchable
 					label="Контент"
 					value={entityFilter}
 					onChange={(_, option) => setEntityFilter(option)}
@@ -211,11 +119,12 @@ export const Filters = memo(() => {
 				<AppSelect
 					key={`AppSelect-4`}
 					label="Страна"
+					searchable
 					value={countryFilter}
 					onChange={(_value, option) => setCountryFilter(option)}
 					data={Object.values(CountriesCodesEnum).map((el) => ({
 						value: el,
-						label: CountryNames[el], // Здесь CountryNames — это ваш объект с русскими названиями стран
+						label: CountryNames[el],
 					}))}
 				/>
 			</AppCard>
