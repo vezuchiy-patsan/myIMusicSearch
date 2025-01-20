@@ -12,7 +12,7 @@ git clone https://github.com/vezuchiy-patsan/myIMusicSearch.git
 ## 2. Перейдите в папку с репозиторием репозиторий
 
 ```bash
-cd your-repository
+cd myIMusicSearch
 ```
 
 ## 3. Установите зависимости
