@@ -6,16 +6,15 @@ import { IconSearch } from '@tabler/icons-react';
 
 import styles from './app-header.module.scss';
 import { useSearchMediaQuery } from '@/app/api/api-query';
-import { CountriesCodesEnum } from '@/shared/types/countries-codes-enum';
+import { useAppSelector } from '@/app/providers/store-provider';
 
 export function AppHeader() {
 	const [value, setValue] = useState('');
 	const [searchValue] = useDebouncedValue(value, 350);
 
-	const { isFetching } = useSearchMediaQuery({
-		term: searchValue,
-		country: CountriesCodesEnum.RU,
-	});
+	const arg = useAppSelector((state) => state.searchArg);
+
+	const { isFetching } = useSearchMediaQuery({ ...arg, term: searchValue });
 
 	return (
 		<header className={styles.header}>
