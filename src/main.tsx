@@ -11,7 +11,7 @@ import { GlobalErrorBoundary } from '@/widgets/global-error-boundary';
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<MantineProvider>
-			<BrowserRouter>
+			<BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL}>
 				<StoreProvider>
 					<GlobalErrorBoundary>
 						<App />
