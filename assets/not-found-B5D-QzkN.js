@@ -1,0 +1,1 @@
+import{r,j as e}from"./index-Tnfw6sUs.js";const p="_pageWrapper_13mmk_1",a={pageWrapper:p};function s(){return e.jsx("div",{className:a.pageWrapper,children:e.jsx("p",{children:"Страница не найдена"})})}const o=r.memo(s);export{o as default};
