@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { api, SearchMediaArg } from '@/app/api/api-query';
+import { api } from '@/app/api/api-query';
+import { SearchMediaArg } from '@/app/api/types';
 
 export interface initialSearchArg extends SearchMediaArg {
 	isFetching: boolean;
