@@ -4,8 +4,8 @@ import { CountriesCodesEnum } from '@/shared/types/countries-codes-enum';
 
 export interface SearchMediaArg {
 	term: string;
-	country?: CountriesCodesEnum;
-	// media?:
+	country?: string;
+	media?: string;
 	entity?: string;
 	limit?: number;
 }
@@ -31,6 +31,7 @@ export interface SearchMediaResponse {
 		| 'tv-episode';
 	trackName: string;
 	artistName: string;
+	artistLinkUrl?: string;
 	collectionName: string;
 	collectionCensoredName?: string;
 	trackCensoredName?: string;
@@ -75,13 +76,14 @@ export const api = createApi({
 	keepUnusedDataFor: 60,
 	endpoints: (build) => ({
 		searchMedia: build.query<SearchMediaResponse[], SearchMediaArg>({
-			query: ({ term, entity, limit }) => {
+			query: ({ term, media, entity, limit, country }) => {
 				const params = new URLSearchParams({
 					term,
 					limit: limit?.toString() || '25',
-					country: CountriesCodesEnum.RU,
+					country: country || CountriesCodesEnum.RU,
 				});
 				if (entity) params.append('entity', entity);
+				if (media) params.append('media', media);
 
 				return {
 					url: 'search',
