@@ -11,6 +11,9 @@
 		min-width: 100%;
 		padding-top: var(--app-shell-header-offset) / 2;
 		padding-inline: 50px;
+		@media screen and (max-width: 36em) {
+			padding-inline: 0;
+		}
 	}
 }
 
